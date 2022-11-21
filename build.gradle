@@ -1,26 +1,23 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.5'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.oracle.java'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '20'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 	javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(19)
+        languageVersion = JavaLanguageVersion.of(20)
     }
 	jvmArgs(['--enable-preview'])
 }
@@ -28,7 +25,7 @@ tasks.named('test') {
 
 tasks.withType(JavaCompile).configureEach {
     javaCompiler = javaToolchains.compilerFor {
-        languageVersion = JavaLanguageVersion.of(19)
+        languageVersion = JavaLanguageVersion.of(20)
     }
     it.options.compilerArgs.add('--enable-preview')
 }
